@@ -1,10 +1,11 @@
-﻿Modèles de classification binaire
-=================================
+﻿# Modèles de classification binaire
 
-Discriminatif :
-	- Régression linéaire
-	- Régression logistique
+## Modèle discriminatif
 
-Génératif :
-	- LDA
-	- QDA
+1. Régression linéaire
+2. Régression logistique
+
+## Modèle génératif
+
+1. LDA
+2. QDA
