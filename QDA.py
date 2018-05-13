@@ -11,9 +11,9 @@ def conique(gamma, beta, alpha, absc, ordo):
 
 
 class QDA(ModeleGeneratif):
-    '''
+    """
     Quadratic Discriminant Analysis (QDA)
-    '''
+    """
 
     def __init__(self):
         ModeleGeneratif.__init__(self)
@@ -43,31 +43,31 @@ class QDA(ModeleGeneratif):
         self.sigma0 /= n
         return
 
-    def getErreur(self, filename):
+    def get_error(self, filename):
         self.creer(filename)
         invsigma1 = np.linalg.inv(self.sigma1)
         invsigma0 = np.linalg.inv(self.sigma0)
         alpha = 0.5 * (invsigma0 - invsigma1)
         beta = np.dot(invsigma1, self.mu1) - np.dot(invsigma0, self.mu0)
-        gamma = math.log(self.pi / (1 - self.pi)) + 0.5 * math.log(
-            np.linalg.det(self.sigma0) / np.linalg.det(self.sigma1)) - 0.5 * np.dot(self.mu1.T, np.dot(invsigma1,
-                                                                                                       self.mu1)) + 0.5 * np.dot(
-            self.mu0.T, np.dot(invsigma0, self.mu0))
+        gamma = math.log(self.pi / (1 - self.pi)) \
+                + 0.5 * math.log(np.linalg.det(self.sigma0) / np.linalg.det(self.sigma1)) \
+                - 0.5 * np.dot(self.mu1.T, np.dot(invsigma1, self.mu1)) \
+                + 0.5 * np.dot(self.mu0.T, np.dot(invsigma0, self.mu0))
         Ypred = np.array(self.Y)
         for i in range(len(self.Y)):
             Ypred[i] = 1.0 / (1 + math.exp(
                 -gamma - np.dot(self.X[i, :], beta) - 0.5 * np.dot(self.X[i, :].T, np.dot(alpha, self.X[i, :]))))
         return sum(abs(self.Y - Ypred)) / len(self.Y)
 
-    def getSeparateur(self):
+    def get_separator(self):
         invsigma1 = np.linalg.inv(self.sigma1)
         invsigma0 = np.linalg.inv(self.sigma0)
         alpha = 0.5 * (invsigma0 - invsigma1)
         beta = np.dot(invsigma1, self.mu1) - np.dot(invsigma0, self.mu0)
-        gamma = math.log(self.pi / (1 - self.pi)) + 0.5 * math.log(
-            np.linalg.det(self.sigma0) / np.linalg.det(self.sigma1)) - 0.5 * np.dot(self.mu1.T, np.dot(invsigma1,
-                                                                                                       self.mu1)) + 0.5 * np.dot(
-            self.mu0.T, np.dot(invsigma0, self.mu0))
+        gamma = math.log(self.pi / (1 - self.pi)) \
+                + 0.5 * math.log(np.linalg.det(self.sigma0) / np.linalg.det(self.sigma1)) \
+                - 0.5 * np.dot(self.mu1.T, np.dot(invsigma1, self.mu1)) \
+                + 0.5 * np.dot(self.mu0.T, np.dot(invsigma0, self.mu0))
         abscisse_possible = np.linspace(min(self.X[:, -2]), max(self.X[:, -2]))
         ordonnee_possible = np.linspace(min(self.X[:, -1]), max(self.X[:, -1]), 500)
         abscisse = []
@@ -79,24 +79,9 @@ class QDA(ModeleGeneratif):
             if MonMinimum < 0.3 and (len(ordonnee) == 0 or abs(ordonnee[-1] - ordonnee_possible[MonRang]) < 1):
                 abscisse.append(abscisse_possible[i])
                 ordonnee.append(ordonnee_possible[MonRang])
-        return (abscisse, ordonnee)
-
-
-def main():
-    from load_data import get_train_filename, get_test_filename, get_suffixe_graphique
-
-    for dataset_letter in ['A', 'B', 'C']:
-        my_classifier = QDA()
-        my_classifier.train(get_train_filename(dataset_letter))
-
-        my_classifier.afficherErreur(get_train_filename(dataset_letter))
-        my_classifier.afficher(get_train_filename(dataset_letter) + get_suffixe_graphique(my_classifier.get_name()))
-
-        my_classifier.afficherErreur(get_test_filename(dataset_letter))
-        my_classifier.afficher(get_test_filename(dataset_letter) + get_suffixe_graphique(my_classifier.get_name()))
-
-    return True
+        return abscisse, ordonnee
 
 
 if __name__ == "__main__":
-    main()
+    my_classifier = QDA()
+    my_classifier.main()

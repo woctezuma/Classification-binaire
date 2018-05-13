@@ -6,9 +6,9 @@ from ModeleGeneratif import ModeleGeneratif
 
 
 class LDA(ModeleGeneratif):
-    '''
+    """
     Linear Discriminant Analysis (LDA)
-    '''
+    """
 
     def __init__(self):
         ModeleGeneratif.__init__(self)
@@ -20,6 +20,7 @@ class LDA(ModeleGeneratif):
 
     def train(self, filename):
         self.creer(filename)
+        # noinspection PyPep8Naming
         N1 = sum(self.Y)
         n = len(self.Y)
         self.pi = N1 / n
@@ -33,41 +34,27 @@ class LDA(ModeleGeneratif):
         self.sigma /= n
         return
 
-    def getErreur(self, filename):
+    # noinspection PyPep8Naming
+    def get_error(self, filename):
         self.creer(filename)
         beta = np.linalg.solve(self.sigma, self.mu1 - self.mu0)
         temp = np.linalg.solve(self.sigma, self.mu1 + self.mu0)
         gamma = -0.5 * np.dot((self.mu1 - self.mu0).T, temp) + math.log(self.pi / (1 - self.pi))
-        Ypred = np.array(self.Y)
+        Y_pred = np.array(self.Y)
         for i in range(len(self.Y)):
-            Ypred[i] = 1.0 / (1 + math.exp(-gamma - np.dot(self.X[i, :], beta)))
-        return sum(abs(self.Y - Ypred)) / len(self.Y)
+            Y_pred[i] = 1.0 / (1 + math.exp(-gamma - np.dot(self.X[i, :], beta)))
+        return sum(abs(self.Y - Y_pred)) / len(self.Y)
 
-    def getSeparateur(self):
+    def get_separator(self):
         abscisse = np.linspace(min(self.X[:, -2]), max(self.X[:, -2]))
         valeur = 0.
         beta = np.linalg.solve(self.sigma, self.mu1 - self.mu0)
         temp = np.linalg.solve(self.sigma, self.mu1 + self.mu0)
         gamma = -0.5 * np.dot((self.mu1 - self.mu0).T, temp) + math.log(self.pi / (1 - self.pi))
         ordonnee = (valeur + gamma + beta[-2] * abscisse) / (-beta[-1])
-        return (abscisse, ordonnee)
-
-
-def main():
-    from load_data import get_train_filename, get_test_filename, get_suffixe_graphique
-
-    for dataset_letter in ['A', 'B', 'C']:
-        my_classifier = LDA()
-        my_classifier.train(get_train_filename(dataset_letter))
-
-        my_classifier.afficherErreur(get_train_filename(dataset_letter))
-        my_classifier.afficher(get_train_filename(dataset_letter) + get_suffixe_graphique(my_classifier.get_name()))
-
-        my_classifier.afficherErreur(get_test_filename(dataset_letter))
-        my_classifier.afficher(get_test_filename(dataset_letter) + get_suffixe_graphique(my_classifier.get_name()))
-
-    return True
+        return abscisse, ordonnee
 
 
 if __name__ == "__main__":
-    main()
+    my_classifier = LDA()
+    my_classifier.main()
