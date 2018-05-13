@@ -12,10 +12,10 @@
 
 ## Modèle discriminatif
 
-1. Régression linéaire
-2. Régression logistique
+1. [Régression linéaire](RegressionLineaire.py)
+2. [Régression logistique](RegressionLogistique.py)
 
 ## Modèle génératif
 
-1. LDA
-2. QDA
+1. [LDA](LDA.py)
+2. [QDA](QDA.py)
