@@ -19,7 +19,7 @@ class LDA(ModeleGeneratif):
         return 'LDA'
 
     def train(self, filename):
-        self.creer(filename)
+        self.read_data(filename)
         # noinspection PyPep8Naming
         N1 = sum(self.Y)
         n = len(self.Y)
@@ -36,7 +36,7 @@ class LDA(ModeleGeneratif):
 
     # noinspection PyPep8Naming
     def get_error(self, filename):
-        self.creer(filename)
+        self.read_data(filename)
         beta = np.linalg.solve(self.sigma, self.mu1 - self.mu0)
         temp = np.linalg.solve(self.sigma, self.mu1 + self.mu0)
         gamma = -0.5 * np.dot((self.mu1 - self.mu0).T, temp) + math.log(self.pi / (1 - self.pi))

@@ -19,7 +19,7 @@ class Modele:
     def get_name(self):
         return self.name
 
-    def creer(self, filename, sep='\t'):
+    def read_data(self, filename, sep='\t'):
         raise NotImplemented
 
     def train(self, filename):

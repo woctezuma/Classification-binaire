@@ -6,9 +6,9 @@ from Modele import Modele
 
 
 class ModeleGeneratif(Modele):
-    '''
+    """
     Modele génératif pour la classification binaire
-    '''
+    """
 
     def __init__(self):
         Modele.__init__(self)
@@ -17,10 +17,11 @@ class ModeleGeneratif(Modele):
         self.mu0 = np.array(0)
         return
 
-    def creer(self, filename, sep='\t'):
-        fileReader = csv.reader(open(filename), delimiter=sep)
-        fileContent = [[float(xa), float(xb), float(y)]
-                       for (xa, xb, y) in fileReader]
-        XY = np.array(fileContent)
+    def read_data(self, filename, sep='\t'):
+        file_reader = csv.reader(open(filename), delimiter=sep)
+        file_content = [[float(xa), float(xb), float(y)]
+                        for (xa, xb, y) in file_reader]
+        # noinspection PyPep8Naming
+        XY = np.array(file_content)
         self.X = XY[:, :-1]
         self.Y = XY[:, -1]

@@ -25,7 +25,8 @@ class QDA(ModeleGeneratif):
         return 'QDA'
 
     def train(self, filename):
-        self.creer(filename)
+        self.read_data(filename)
+        # noinspection PyPep8Naming
         N1 = sum(self.Y)
         n = len(self.Y)
         self.pi = N1 / n
@@ -44,7 +45,7 @@ class QDA(ModeleGeneratif):
         return
 
     def get_error(self, filename):
-        self.creer(filename)
+        self.read_data(filename)
         invsigma1 = np.linalg.inv(self.sigma1)
         invsigma0 = np.linalg.inv(self.sigma0)
         alpha = 0.5 * (invsigma0 - invsigma1)
@@ -53,11 +54,12 @@ class QDA(ModeleGeneratif):
                 + 0.5 * math.log(np.linalg.det(self.sigma0) / np.linalg.det(self.sigma1)) \
                 - 0.5 * np.dot(self.mu1.T, np.dot(invsigma1, self.mu1)) \
                 + 0.5 * np.dot(self.mu0.T, np.dot(invsigma0, self.mu0))
-        Ypred = np.array(self.Y)
+        # noinspection PyPep8Naming
+        Y_pred = np.array(self.Y)
         for i in range(len(self.Y)):
-            Ypred[i] = 1.0 / (1 + math.exp(
+            Y_pred[i] = 1.0 / (1 + math.exp(
                 -gamma - np.dot(self.X[i, :], beta) - 0.5 * np.dot(self.X[i, :].T, np.dot(alpha, self.X[i, :]))))
-        return sum(abs(self.Y - Ypred)) / len(self.Y)
+        return sum(abs(self.Y - Y_pred)) / len(self.Y)
 
     def get_separator(self):
         invsigma1 = np.linalg.inv(self.sigma1)
@@ -73,12 +75,12 @@ class QDA(ModeleGeneratif):
         abscisse = []
         ordonnee = []
         for i in range(2, len(abscisse_possible)):
-            MaConique = [abs(conique(gamma, beta, alpha, abscisse_possible[i], ordo)) for ordo in ordonnee_possible]
-            MonMinimum = min(MaConique)
-            MonRang = np.nonzero(MaConique == MonMinimum)[0]
-            if MonMinimum < 0.3 and (len(ordonnee) == 0 or abs(ordonnee[-1] - ordonnee_possible[MonRang]) < 1):
+            ma_conique = [abs(conique(gamma, beta, alpha, abscisse_possible[i], ordo)) for ordo in ordonnee_possible]
+            mon_minimum = min(ma_conique)
+            mon_rang = np.nonzero(ma_conique == mon_minimum)[0]
+            if mon_minimum < 0.3 and (len(ordonnee) == 0 or abs(ordonnee[-1] - ordonnee_possible[mon_rang]) < 1):
                 abscisse.append(abscisse_possible[i])
-                ordonnee.append(ordonnee_possible[MonRang])
+                ordonnee.append(ordonnee_possible[mon_rang])
         return abscisse, ordonnee
 
 

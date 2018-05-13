@@ -13,7 +13,7 @@ def get_test_filename(dataset_letter='A'):
     return test_filename
 
 
-def get_suffixe_graphique(class_name=''):
+def get_plot_suffixe(class_name=''):
     matches = dict()
     matches['RegressionLineaire'] = 'RegLin'
     matches['RegressionLogistique'] = 'RegLog'
@@ -21,23 +21,23 @@ def get_suffixe_graphique(class_name=''):
     matches['QDA'] = 'QDA'
 
     try:
-        suffixe_graphique = '.' + matches[class_name]
+        plot_suffixe = '.' + matches[class_name]
     except KeyError:
-        suffixe_graphique = ''
+        plot_suffixe = ''
 
-    suffixe_graphique += '.png'
+    plot_suffixe += '.png'
 
-    return suffixe_graphique
+    return plot_suffixe
 
 
 def main():
     for dataset_letter in ['A', 'B', 'C']:
 
-        for str in [get_dataset_path(dataset_letter),
-                    get_train_filename(dataset_letter),
-                    get_test_filename(dataset_letter),
-                    get_suffixe_graphique('')]:
-            print(str)
+        for text in [get_dataset_path(dataset_letter),
+                     get_train_filename(dataset_letter),
+                     get_test_filename(dataset_letter),
+                     get_plot_suffixe('')]:
+            print(text)
 
     return True
 
