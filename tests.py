@@ -1,7 +1,6 @@
 import unittest
 
 import load_data
-import main
 from LDA import LDA
 from QDA import QDA
 from RegressionLineaire import RegressionLineaire
@@ -17,31 +16,29 @@ class TestLoadDataMethods(unittest.TestCase):
 class TestRegressionLineaireMethods(unittest.TestCase):
 
     def test_main(self):
-        self.assertTrue(RegressionLineaire.main())
+        my_classifier = RegressionLineaire()
+        self.assertTrue(my_classifier.main())
 
 
 class TestRegressionLogistiqueMethods(unittest.TestCase):
 
     def test_main(self):
-        self.assertTrue(RegressionLogistique.main())
+        my_classifier = RegressionLogistique()
+        self.assertTrue(my_classifier.main())
 
 
 class TestLDAMethods(unittest.TestCase):
 
     def test_main(self):
-        self.assertTrue(LDA.main())
+        my_classifier = LDA()
+        self.assertTrue(my_classifier.main())
 
 
 class TestQDAMethods(unittest.TestCase):
 
     def test_main(self):
-        self.assertTrue(QDA.main())
-
-
-class TestMainMethods(unittest.TestCase):
-
-    def test_main(self):
-        self.assertTrue(main.main())
+        my_classifier = QDA()
+        self.assertTrue(my_classifier.main())
 
 
 if __name__ == '__main__':
