@@ -17,5 +17,5 @@
 
 ## Modèle génératif
 
-1. [LDA](LDA.py)
-2. [QDA](QDA.py)
+1. [Linear Discriminant Analysis](LDA.py)
+2. [Quadratic Discriminant Analysis](QDA.py)
