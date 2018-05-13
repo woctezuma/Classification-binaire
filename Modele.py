@@ -17,22 +17,22 @@ class Modele:
         return
 
     def set_name(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def get_name(self):
         return self.name
 
     def read_data(self, filename, sep='\t'):
-        raise NotImplemented
+        raise NotImplementedError
 
     def train(self, filename):
-        raise NotImplemented
+        raise NotImplementedError
 
     def get_error(self, filename):
-        raise NotImplemented
+        raise NotImplementedError
 
     def get_separator(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def display_figure(self, output_name):
         plt.figure()
