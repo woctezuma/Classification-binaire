@@ -25,16 +25,16 @@ class RegressionLogistique(ModeleDiscriminatif):
             self.beta += delta_beta
             if all(delta_beta < 1e-8):
                 break
-            for i in range(len(mu)):
-                mu[i] = 1.0 / (1 + math.exp(-np.dot(self.X[i, :], self.beta)))
+            for (row_no, row) in enumerate(self.X):
+                mu[row_no] = 1.0 / (1 + math.exp(-np.dot(row, self.beta)))
             num_iter += 1
         return
 
     def get_error(self, filename):
         self.read_data(filename)
         mu = np.linspace(0, 0, len(self.Y))
-        for i in range(len(mu)):
-            mu[i] = 1.0 / (1 + math.exp(-np.dot(self.X[i, :], self.beta)))
+        for (row_no, row) in enumerate(self.X):
+            mu[row_no] = 1.0 / (1 + math.exp(-np.dot(row, self.beta)))
         # noinspection PyPep8Naming
         Y_pred = mu
         return sum(abs(self.Y - Y_pred)) / len(self.Y)
