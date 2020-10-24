@@ -28,9 +28,14 @@ class LDA(ModeleGeneratif):
         self.mu0 = np.array([np.dot(self.X[:, i], (1 - self.Y)) for i in range(len(self.X[0, :]))])
         self.mu1 /= N1
         self.mu0 /= n - N1
-        self.sigma = sum([np.outer(z, z)
-                          for z in [(self.X[i, :] - self.Y[i] * self.mu1 - (1 - self.Y[i]) * self.mu0)
-                                    for i in range(len(self.Y))]])
+        self.sigma = sum(
+            np.outer(z, z)
+            for z in [
+                (self.X[i, :] - self.Y[i] * self.mu1 - (1 - self.Y[i]) * self.mu0)
+                for i in range(len(self.Y))
+            ]
+        )
+
         self.sigma /= n
         return
 
