@@ -34,12 +34,24 @@ class QDA(ModeleGeneratif):
         self.mu0 = np.array([np.dot(self.X[:, i], (1 - self.Y)) for i in range(len(self.X[0, :]))])
         self.mu1 /= N1
         self.mu0 /= n - N1
-        self.sigma1 = sum([np.outer(z, z)
-                           for z in [(self.X[i, :] - self.mu1)
-                                     for i in range(len(self.Y)) if self.Y[i] == 1]])
-        self.sigma0 = sum([np.outer(z, z)
-                           for z in [(self.X[i, :] - self.mu0)
-                                     for i in range(len(self.Y)) if self.Y[i] == 0]])
+        self.sigma1 = sum(
+            np.outer(z, z)
+            for z in [
+                (self.X[i, :] - self.mu1)
+                for i in range(len(self.Y))
+                if self.Y[i] == 1
+            ]
+        )
+
+        self.sigma0 = sum(
+            np.outer(z, z)
+            for z in [
+                (self.X[i, :] - self.mu0)
+                for i in range(len(self.Y))
+                if self.Y[i] == 0
+            ]
+        )
+
         self.sigma1 /= n
         self.sigma0 /= n
         return
@@ -78,7 +90,9 @@ class QDA(ModeleGeneratif):
             ma_conique = [abs(conique(gamma, beta, alpha, abscisse_possible[i], ordo)) for ordo in ordonnee_possible]
             mon_minimum = min(ma_conique)
             mon_rang = np.nonzero(ma_conique == mon_minimum)[0]
-            if mon_minimum < 0.3 and (len(ordonnee) == 0 or abs(ordonnee[-1] - ordonnee_possible[mon_rang]) < 1):
+            if mon_minimum < 0.3 and (
+                not ordonnee or abs(ordonnee[-1] - ordonnee_possible[mon_rang]) < 1
+            ):
                 abscisse.append(abscisse_possible[i])
                 ordonnee.append(ordonnee_possible[mon_rang])
         return abscisse, ordonnee
