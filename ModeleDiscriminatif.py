@@ -1,4 +1,5 @@
 import csv
+from pathlib import Path
 
 import numpy as np
 
@@ -14,8 +15,11 @@ class ModeleDiscriminatif(Modele):
         return
 
     def read_data(self, filename, sep='\t'):
-        file_reader = csv.reader(open(filename), delimiter=sep)
-        file_content = [[float(xa), float(xb), float(y)] for (xa, xb, y) in file_reader]
+        with Path(filename).open() as f:
+            file_reader = csv.reader(f, delimiter=sep)
+            file_content = [
+                [float(xa), float(xb), float(y)] for (xa, xb, y) in file_reader
+            ]
         # noinspection PyPep8Naming
         XY = np.array(file_content)
         # noinspection PyPep8Naming
