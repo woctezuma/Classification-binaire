@@ -6,9 +6,7 @@ from Modele import Modele
 
 
 class ModeleDiscriminatif(Modele):
-    """
-    Modele discriminatif de classification binaire
-    """
+    """Modele discriminatif de classification binaire."""
 
     def __init__(self):
         Modele.__init__(self)

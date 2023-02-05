@@ -14,7 +14,7 @@ def get_test_filename(dataset_letter='A'):
 
 
 def get_plot_suffixe(class_name=''):
-    matches = dict()
+    matches = {}
     matches['RegressionLineaire'] = 'RegLin'
     matches['RegressionLogistique'] = 'RegLog'
     matches['LDA'] = 'LDA'

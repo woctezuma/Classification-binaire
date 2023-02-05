@@ -9,31 +9,31 @@ from RegressionLogistique import RegressionLogistique
 
 class TestLoadDataMethods(unittest.TestCase):
     def test_main(self):
-        self.assertTrue(load_data.main())
+        assert load_data.main() is True
 
 
 class TestRegressionLineaireMethods(unittest.TestCase):
     def test_main(self):
         my_classifier = RegressionLineaire()
-        self.assertTrue(my_classifier.main())
+        assert my_classifier.main() is True
 
 
 class TestRegressionLogistiqueMethods(unittest.TestCase):
     def test_main(self):
         my_classifier = RegressionLogistique()
-        self.assertTrue(my_classifier.main())
+        assert my_classifier.main() is True
 
 
 class TestLDAMethods(unittest.TestCase):
     def test_main(self):
         my_classifier = LDA()
-        self.assertTrue(my_classifier.main())
+        assert my_classifier.main() is True
 
 
 class TestQDAMethods(unittest.TestCase):
     def test_main(self):
         my_classifier = QDA()
-        self.assertTrue(my_classifier.main())
+        assert my_classifier.main() is True
 
 
 if __name__ == '__main__':

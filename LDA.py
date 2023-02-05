@@ -6,9 +6,7 @@ from ModeleGeneratif import ModeleGeneratif
 
 
 class LDA(ModeleGeneratif):
-    """
-    Linear Discriminant Analysis (LDA)
-    """
+    """Linear Discriminant Analysis (LDA)."""
 
     def __init__(self):
         ModeleGeneratif.__init__(self)

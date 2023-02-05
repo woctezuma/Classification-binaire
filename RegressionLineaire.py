@@ -1,12 +1,10 @@
-﻿import numpy as np
+import numpy as np
 
 from ModeleDiscriminatif import ModeleDiscriminatif
 
 
 class RegressionLineaire(ModeleDiscriminatif):
-    """
-    Régression linéaire
-    """
+    """Régression linéaire."""
 
     def set_name(self):
         return 'RegressionLineaire'

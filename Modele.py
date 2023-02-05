@@ -6,9 +6,7 @@ import numpy as np
 
 
 class Modele:
-    """
-    Modele pour la classification binaire
-    """
+    """Modele pour la classification binaire."""
 
     def __init__(self):
         self.X = np.array(0)
@@ -46,11 +44,11 @@ class Modele:
         return
 
     def display_error(self, filename):
-        print('Erreur ({}) : {:.2f}'.format(filename, self.get_error(filename)))
+        print(f'Erreur ({filename}) : {self.get_error(filename):.2f}')
         return
 
     def main(self):
-        from load_data import get_train_filename, get_test_filename, get_plot_suffixe
+        from load_data import get_plot_suffixe, get_test_filename, get_train_filename
 
         for dataset_letter in ['A', 'B', 'C']:
             self.train(get_train_filename(dataset_letter))

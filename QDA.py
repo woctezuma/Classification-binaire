@@ -14,9 +14,7 @@ def conique(gamma, beta, alpha, absc, ordo):
 
 
 class QDA(ModeleGeneratif):
-    """
-    Quadratic Discriminant Analysis (QDA)
-    """
+    """Quadratic Discriminant Analysis (QDA)."""
 
     def __init__(self):
         ModeleGeneratif.__init__(self)

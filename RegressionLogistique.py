@@ -1,4 +1,4 @@
-﻿import math
+import math
 
 import numpy as np
 
@@ -6,9 +6,7 @@ from ModeleDiscriminatif import ModeleDiscriminatif
 
 
 class RegressionLogistique(ModeleDiscriminatif):
-    """
-    Régression logistique
-    """
+    """Régression logistique."""
 
     def set_name(self):
         return 'RegressionLogistique'

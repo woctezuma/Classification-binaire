@@ -1,4 +1,4 @@
-﻿import csv
+import csv
 
 import numpy as np
 
@@ -6,9 +6,7 @@ from Modele import Modele
 
 
 class ModeleGeneratif(Modele):
-    """
-    Modele génératif pour la classification binaire
-    """
+    """Modele génératif pour la classification binaire."""
 
     def __init__(self):
         Modele.__init__(self)
