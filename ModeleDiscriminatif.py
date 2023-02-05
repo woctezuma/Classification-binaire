@@ -17,8 +17,7 @@ class ModeleDiscriminatif(Modele):
 
     def read_data(self, filename, sep='\t'):
         file_reader = csv.reader(open(filename), delimiter=sep)
-        file_content = [[float(xa), float(xb), float(y)]
-                        for (xa, xb, y) in file_reader]
+        file_content = [[float(xa), float(xb), float(y)] for (xa, xb, y) in file_reader]
         # noinspection PyPep8Naming
         XY = np.array(file_content)
         # noinspection PyPep8Naming

@@ -21,11 +21,14 @@ class RegressionLogistique(ModeleDiscriminatif):
         while num_iter < 25:
             # noinspection PyPep8Naming
             W = np.diag(mu * (1 - mu))
-            delta_beta = np.linalg.solve(np.dot(self.X.T, np.dot(W, self.X)), np.dot(self.X.T, (self.Y - mu)))
+            delta_beta = np.linalg.solve(
+                np.dot(self.X.T, np.dot(W, self.X)),
+                np.dot(self.X.T, (self.Y - mu)),
+            )
             self.beta += delta_beta
             if all(delta_beta < 1e-8):
                 break
-            for (row_no, row) in enumerate(self.X):
+            for row_no, row in enumerate(self.X):
                 mu[row_no] = 1.0 / (1 + math.exp(-np.dot(row, self.beta)))
             num_iter += 1
         return
@@ -33,7 +36,7 @@ class RegressionLogistique(ModeleDiscriminatif):
     def get_error(self, filename):
         self.read_data(filename)
         mu = np.linspace(0, 0, len(self.Y))
-        for (row_no, row) in enumerate(self.X):
+        for row_no, row in enumerate(self.X):
             mu[row_no] = 1.0 / (1 + math.exp(-np.dot(row, self.beta)))
         # noinspection PyPep8Naming
         Y_pred = mu
@@ -41,7 +44,7 @@ class RegressionLogistique(ModeleDiscriminatif):
 
     def get_separator(self):
         abscisse = np.linspace(min(self.X[:, -2]), max(self.X[:, -2]))
-        valeur = 0.
+        valeur = 0.0
         ordonnee = (valeur - self.beta[0] - self.beta[1] * abscisse) / self.beta[2]
         return abscisse, ordonnee
 

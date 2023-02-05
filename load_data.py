@@ -32,11 +32,12 @@ def get_plot_suffixe(class_name=''):
 
 def main():
     for dataset_letter in ['A', 'B', 'C']:
-
-        for text in [get_dataset_path(dataset_letter),
-                     get_train_filename(dataset_letter),
-                     get_test_filename(dataset_letter),
-                     get_plot_suffixe('')]:
+        for text in [
+            get_dataset_path(dataset_letter),
+            get_train_filename(dataset_letter),
+            get_test_filename(dataset_letter),
+            get_plot_suffixe(''),
+        ]:
             print(text)
 
     return True
