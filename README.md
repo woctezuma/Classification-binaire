@@ -3,8 +3,8 @@
 [![Build status][Build image]][Build]
 [![Code coverage][Codecov image]][Codecov]
 
-  [Build]: https://travis-ci.org/woctezuma/Classification-binaire
-  [Build image]: https://travis-ci.org/woctezuma/Classification-binaire.svg?branch=master
+  [Build]: <https://github.com/woctezuma/Classification-binaire/actions>
+  [Build image]: <https://github.com/woctezuma/Classification-binaire/workflows/Python package/badge.svg?branch=master>
 
   [PyUp]: https://pyup.io/repos/github/woctezuma/Classification-binaire/
   [Dependency image]: https://pyup.io/repos/github/woctezuma/Classification-binaire/shield.svg
