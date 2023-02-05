@@ -1,16 +1,13 @@
 def get_dataset_path(dataset_letter):
-    dataset_path = 'data/classification' + dataset_letter
-    return dataset_path
+    return 'data/classification' + dataset_letter
 
 
 def get_train_filename(dataset_letter='A'):
-    train_filename = get_dataset_path(dataset_letter) + '.train'
-    return train_filename
+    return get_dataset_path(dataset_letter) + '.train'
 
 
 def get_test_filename(dataset_letter='A'):
-    test_filename = get_dataset_path(dataset_letter) + '.test'
-    return test_filename
+    return get_dataset_path(dataset_letter) + '.test'
 
 
 def get_plot_suffixe(class_name=''):
